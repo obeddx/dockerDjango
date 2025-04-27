@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Statistik User & Course</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        h1 { color: #333; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+
+    <h1>Statistik User & Course</h1>
+
+    <h2>Ringkasan:</h2>
+    <ul>
+        <li><strong>Jumlah user yang membuat course:</strong> {{ users_with_courses }}</li>
+        <li><strong>Jumlah user yang tidak memiliki course:</strong> {{ users_without_courses }}</li>
+        <li><strong>Rata-rata jumlah course yang diikuti per user:</strong> {{ avg_courses_per_user|default:"0" }}</li>
+        <li><strong>User yang mengikuti course terbanyak:</strong> 
+            {% if user_with_most_courses %}
+                {{ user_with_most_courses.username }}
+            {% else %}
+                Tidak ada data
+            {% endif %}
+        </li>
+    </ul>
+
+    <h2>User yang tidak mengikuti course sama sekali:</h2>
+    {% if users_without_subscriptions %}
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users_without_subscriptions %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>Semua user mengikuti setidaknya satu course.</p>
+    {% endif %}
+
+</body>
+</html>
