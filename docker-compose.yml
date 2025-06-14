@@ -1,6 +1,6 @@
 services:
   django:
-    container_name: simple_lms
+    container_name: simple_lms1
     build: .
     # command: sleep infinity
     command: python manage.py runserver 0.0.0.0:8000
@@ -11,7 +11,7 @@ services:
     depends_on:
       - postgres 
   postgres:
-    container_name: simple_db
+    container_name: simple_db1
     image: postgres:15.10
     environment:
       POSTGRES_DB: simple_lms

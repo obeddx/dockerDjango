@@ -22,7 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('testing', testing),
     path('course', allCourse),
-     path('courseStatistic', courseStat),
+    path('courseStatistic', courseStat),
     path('', index),
     path('statistics', statistics_view, name='statistics'),
     path('silk/', include('silk.urls', namespace='silk')),
